@@ -43,8 +43,8 @@ public_users.post("/register", (req,res) => {
 ////////////////////////// task 10
 public_users.get('/', async function (req, res) {
   try {
-    // Assuming `books` is an asynchronous operation, you can use await here.
-    const books = await fetchBooks(); // Replace fetchBooks with your actual asynchronous operation.
+    
+    const books = await fetchBooks(); 
     res.send(JSON.stringify(books, null, 4));
   } catch (err) {
     console.error('Error:', err);
@@ -52,10 +52,8 @@ public_users.get('/', async function (req, res) {
   }
 });
 
-// Example asynchronous function to fetch books
 async function fetchBooks() {
   return new Promise((resolve, reject) => {
-    // Simulate an asynchronous operation
     setTimeout(() => {
       resolve(books);
     }, 1000);
@@ -79,8 +77,8 @@ public_users.get('/isbn/:isbn', async (req, res) => {
   const ISBN = req.params.isbn;
 
   try {
-    // Assuming fetching a book by ISBN is an asynchronous operation, use await here.
-    const book = await fetchBookByISBN(ISBN); // Replace with your actual asynchronous operation.
+    
+    const book = await fetchBookByISBN(ISBN); 
 
     if (book) {
       res.send(JSON.stringify(book, null, 4));
@@ -93,10 +91,9 @@ public_users.get('/isbn/:isbn', async (req, res) => {
   }
 });
 
-// Example asynchronous function to fetch a book by ISBN
+
 async function fetchBookByISBN(ISBN) {
   return new Promise((resolve, reject) => {
-    // Simulate an asynchronous operation (replace with your actual database query)
     setTimeout(() => {
       const book = books[ISBN];
       resolve(book);
@@ -135,7 +132,7 @@ async function fetchBookByISBN(ISBN) {
 public_users.get('/author/:author', async (req, res) => {
   try {
     const author = req.params.author;
-    const matchingBooks = await findBooksByAuthor(author); // Await here (even though it's not truly asynchronous).
+    const matchingBooks = await findBooksByAuthor(author);
 
     if (matchingBooks.length === 0) {
       return res.status(404).json({ message: 'Author not found' });
@@ -148,7 +145,6 @@ public_users.get('/author/:author', async (req, res) => {
   }
 });
 
-// Example function to find books by author (assuming books is an in-memory object)
 async function findBooksByAuthor(author) {
   return new Promise((resolve, reject) => {
     const matchingBooks = [];
@@ -197,7 +193,7 @@ async function findBooksByAuthor(author) {
 public_users.get('/title/:title', async (req, res) => {
   try {
     const title = req.params.title;
-    const matchingBooks = await findBooksByTitle(title); // Await here (even though it's not truly asynchronous).
+    const matchingBooks = await findBooksByTitle(title);
 
     if (matchingBooks.length === 0) {
       return res.status(404).json({ message: 'Title not found' });
@@ -210,7 +206,6 @@ public_users.get('/title/:title', async (req, res) => {
   }
 });
 
-// Example function to find books by title (assuming books is an in-memory object)
 async function findBooksByTitle(title) {
   return new Promise((resolve, reject) => {
     const matchingBooks = [];
